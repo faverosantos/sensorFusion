@@ -21,7 +21,7 @@ int main()
 	//reta y = -23x + 7
 	int localCounter = 0;
 	double X, Y;
-	for (localCounter = 0; localCounter < 400; localCounter++) {
+	for (localCounter = 0; localCounter < 500; localCounter++) {
 		X = (double)rand() / (double)RAND_MAX;
 		Y = 7 * X + 25;
 		inputCloud.push_back(std::make_pair(X, Y));
