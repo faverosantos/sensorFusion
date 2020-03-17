@@ -2,38 +2,40 @@
 //
 
 #include "stdafx.h"
-#include "iostream"
-#include "RANSAC.h"
+#include <iostream>
 #include <vector>
 #include <iostream>
 #include <fstream>
 using namespace std;
+
+#include "RANSAC.h"
+#include "cloudData.h"
+
 
 
 int main()
 {
 	std::cout << "Hello World!" << "\n";
 
+	cloudData myCloudData;
+
 	std::pair <double, double> myPair;
-	std::vector <std::pair<double, double>> inputCloud;
+	std::vector <std::pair<double, double>> inputCloud, randomCloud;
 
 	
-	//reta y = -23x + 7
-	int localCounter = 0;
-	double X, Y;
-	for (localCounter = 0; localCounter < 500; localCounter++) {
-		X = (double)rand() / (double)RAND_MAX;
-		Y = 7 * X + 25;
-		inputCloud.push_back(std::make_pair(X, Y));
-	}
 
+	inputCloud = myCloudData.generateFuzzyLinearCurve(-2, 15, 200, 10);
+	randomCloud = myCloudData.generateRandomCloud(1500, 500);
+	inputCloud.insert(inputCloud.end(), randomCloud.begin(), randomCloud.end());
+
+	//inputCloud.insert(inputCloud, myCloudData.generateRandomCloud(1500));
 	// lixo
-	double rngX, rngY;
+	/*double rngX, rngY;
 	for (localCounter = 0; localCounter < 1500; localCounter++) {
-		rngX = 50 * (double)rand() / (double)RAND_MAX - 11;
-		rngY = 70 * (double)rand() / (double)RAND_MAX - 31;
+		rngX = 200 * (double)rand() / (double)RAND_MAX - 100;
+		rngY = 200 * (double)rand() / (double)RAND_MAX - 100;
 		inputCloud.push_back(std::make_pair(rngX, rngY));
-	}
+	}*/
 	
 	ofstream myfile("data.txt");
 	if (myfile.is_open())
@@ -49,8 +51,8 @@ int main()
 	
 	
 	RANSAC myRansac;
-	myPair = myRansac.getLinearCoefficients(inputCloud, 1000, 0.2);
-	//std::cout << "a: " << myPair.first << "\nb:  " << myPair.second << "\nare the coefficients of the linear curve!" << "\n";
+	myPair = myRansac.getLinearCoefficients(inputCloud, 10000, 0.2);
+	//std::cout << "a: " << myPair.first << "\nb:  " << myPair.second << "\nare the coefficients of the linear curve!" << "\n";*/
 	std::cout << "End! \n";
 	
 	getchar();

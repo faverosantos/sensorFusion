@@ -146,12 +146,14 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cloudData.h" />
     <ClInclude Include="myDefines.h" />
     <ClInclude Include="RANSAC.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cloudData.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RANSAC.cpp" />
     <ClCompile Include="stdafx.cpp">
