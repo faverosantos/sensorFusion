@@ -27,15 +27,6 @@ int main()
 	inputCloud = myCloudData.generateFuzzyLinearCurve(-2, 15, 200, 10);
 	randomCloud = myCloudData.generateRandomCloud(1500, 500);
 	inputCloud.insert(inputCloud.end(), randomCloud.begin(), randomCloud.end());
-
-	//inputCloud.insert(inputCloud, myCloudData.generateRandomCloud(1500));
-	// lixo
-	/*double rngX, rngY;
-	for (localCounter = 0; localCounter < 1500; localCounter++) {
-		rngX = 200 * (double)rand() / (double)RAND_MAX - 100;
-		rngY = 200 * (double)rand() / (double)RAND_MAX - 100;
-		inputCloud.push_back(std::make_pair(rngX, rngY));
-	}*/
 	
 	ofstream myfile("data.txt");
 	if (myfile.is_open())
