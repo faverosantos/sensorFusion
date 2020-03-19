@@ -2,7 +2,6 @@
 #include "RANSAC.h"
 #include <iostream>
 #include "myDefines.h"
-#include <vector>
 
 
 RANSAC::RANSAC()
@@ -14,7 +13,7 @@ RANSAC::~RANSAC()
 {
 }
 
-std::pair <double, double> RANSAC::getLinearCoefficients(std::vector <std::pair<double, double>> inputCloud, int numberTries, double minimumDistance) {
+std::pair <double, double> RANSAC::getLinearCoefficients(cloud inputCloud, int numberTries, double minimumDistance) {
 
 	
 	int maximumHitCounter = 0;
@@ -22,10 +21,11 @@ std::pair <double, double> RANSAC::getLinearCoefficients(std::vector <std::pair<
 	std::pair <double, double> returnCoefficients;
 		
 	int counterTries = 0;
+	std::pair <double, double> firstPair, secondPair;
+
 	for (counterTries = 0; counterTries < numberTries; counterTries++){
 		
 		// 1. Take two random pairs and create return coefficients
-		std::pair <double, double> firstPair, secondPair;
 		
 		int kick = rand() % inputCloud.size();
 		firstPair.first = inputCloud[kick].first; // x
@@ -70,13 +70,13 @@ std::pair <double, double> RANSAC::getLinearCoefficients(std::vector <std::pair<
 				maximumHitCounter = hitCounter;
 				returnCoefficients.first = a;
 				returnCoefficients.second = b;
-				std::cout << "Minimum found at " << counterTries << " with " << hitCounter << " hits. Coefs are: a: " << a << " b: " << b << "\n";
+				//std::cout << "Minimum found at " << counterTries << " with " << hitCounter << " hits. Coefs are: a: " << a << " b: " << b << "\n";
 			}
 		}
 
-	// 5. Repeat process until number tries is achieved
+	// 5. Repeat process until number of tries is achieved
 	}
-
+	std::cout << "Found coefficients are: a: " << returnCoefficients.first << " b: " << returnCoefficients.second << "\n";
 	return returnCoefficients;
 }
 

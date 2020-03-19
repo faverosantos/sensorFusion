@@ -1,6 +1,5 @@
 #pragma once
-#include <utility>
-#include <vector>
+#include "myDefines.h"
 
 
 class RANSAC
@@ -9,7 +8,7 @@ public:
 	RANSAC();
 	~RANSAC();
 
-	std::pair <double, double> getLinearCoefficients(std::vector <std::pair<double, double>> inputCloud, int numberTries, double minimumDistance);
+	std::pair <double, double> getLinearCoefficients(cloud inputCloud, int numberTries, double minimumDistance);
 private:
 	
 };

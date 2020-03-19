@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cloudData.h" />
+    <ClInclude Include="fileIO.h" />
     <ClInclude Include="myDefines.h" />
     <ClInclude Include="RANSAC.h" />
     <ClInclude Include="stdafx.h" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cloudData.cpp" />
+    <ClCompile Include="fileIO.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RANSAC.cpp" />
     <ClCompile Include="stdafx.cpp">

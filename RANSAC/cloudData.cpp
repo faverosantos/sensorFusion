@@ -2,8 +2,8 @@
 #include "cloudData.h"
 
 
-cloudData::cloudData()
-{
+cloudData::cloudData(){
+	this->dataPoints = {};
 }
 
 
@@ -12,33 +12,28 @@ cloudData::~cloudData()
 }
 
 
-// Creates a random data cloud inside the (-100,-100) to (100, 100) box
-std::vector <std::pair<double, double>> cloudData::generateRandomCloud(int cloudSize, int boxSize) {
+// Creates a random data cloud inside the box of size boxSize
+void cloudData::generateRandomCloud(int cloudSize, int boxSize) {
 	
-	std::vector <std::pair<double, double>> randonCloud;
 	double rngX, rngY;
 	int localCounter = 0;
 	
 	for (localCounter = 0; localCounter < cloudSize; localCounter++) {
 		rngX = boxSize * (double)rand() / (double)RAND_MAX - boxSize/2;
 		rngY = boxSize * (double)rand() / (double)RAND_MAX - boxSize/2;
-		randonCloud.push_back(std::make_pair(rngX, rngY));
+		dataPoints.push_back(std::make_pair(rngX, rngY));
 	}
-	return randonCloud;
 }
 
-// Creates a fuzzy linear function curve
-std::vector <std::pair<double, double>> cloudData::generateFuzzyLinearCurve(double angularCoefficient, double linearCoefficient, int size, int fuzzyness) {
+// Creates a fuzzy linear function curve of boxSize 
+void cloudData::generateFuzzyLinearCurve(double angularCoefficient, double linearCoefficient, int boxSize, int fuzzyness) {
 	
-	std::vector <std::pair<double, double>> fuzzyLinear;
 	double X, Y;
-
 	int localCounter = 0;
 
-	for (localCounter = 0; localCounter < size; localCounter++) {
-		X = 100 * (double)rand() / (double)RAND_MAX - 50;
+	for (localCounter = 0; localCounter < boxSize; localCounter++) {
+		X = boxSize * (double)rand() / (double)RAND_MAX - boxSize/2;
 		Y = X * angularCoefficient + linearCoefficient + fuzzyness*(double)rand() / (double)RAND_MAX - fuzzyness/2;
-		fuzzyLinear.push_back(std::make_pair(X, Y));
+		dataPoints.push_back(std::make_pair(X, Y));
 	}
-	return fuzzyLinear;
 }

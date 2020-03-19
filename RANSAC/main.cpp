@@ -3,50 +3,40 @@
 
 #include "stdafx.h"
 #include <iostream>
-#include <vector>
-#include <iostream>
-#include <fstream>
-using namespace std;
 
+#include "myDefines.h"
 #include "RANSAC.h"
 #include "cloudData.h"
+#include "fileIO.h"
 
 
 
-int main()
+int main(int argc, char** argv)
 {
 	std::cout << "Hello World!" << "\n";
 
+	double angularCoef = atof(argv[1]);
+	double linearCoef = atof(argv[2]);
+
+	std::cout << angularCoef << "\n";
+	std::cout << linearCoef << "\n";
+
 	cloudData myCloudData;
+	myCloudData.generateFuzzyLinearCurve(angularCoef, linearCoef, 500, 10);
+	myCloudData.generateRandomCloud(0, 500);
 
-	std::pair <double, double> myPair;
-	std::vector <std::pair<double, double>> inputCloud, randomCloud;
-
-	
-
-	inputCloud = myCloudData.generateFuzzyLinearCurve(-2, 15, 200, 10);
-	randomCloud = myCloudData.generateRandomCloud(1500, 500);
-	inputCloud.insert(inputCloud.end(), randomCloud.begin(), randomCloud.end());
-	
-	ofstream myfile("data.txt");
-	if (myfile.is_open())
-	{	
-		int counter = 0;
-		for (counter = 0; counter < inputCloud.size(); counter++) {
-			myfile << inputCloud[counter].first << "  " << inputCloud[counter].second << "\n";
-		}
-		myfile.close();
-	}
-	else cout << "Unable to open file";
-
-	
+	fileIO myFile;
+	//myFile.save2file(myCloudData.dataPoints, "data.txt");
 	
 	RANSAC myRansac;
-	myPair = myRansac.getLinearCoefficients(inputCloud, 10000, 0.2);
-	//std::cout << "a: " << myPair.first << "\nb:  " << myPair.second << "\nare the coefficients of the linear curve!" << "\n";*/
-	std::cout << "End! \n";
+	std::pair <double, double> myPair;
+	myPair = myRansac.getLinearCoefficients(myCloudData.dataPoints, 2000, 0.5);
 	
-	getchar();
+	myCloudData.dataPoints.push_back(myPair);
+	myFile.save2file(myCloudData.dataPoints, "data.txt");
+
+	std::cout << "End! \n";
+	//getchar();
 	return 0;
 }
 
