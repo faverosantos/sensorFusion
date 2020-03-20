@@ -8,7 +8,9 @@ public:
 	RANSAC();
 	~RANSAC();
 
-	std::pair <double, double> getLinearCoefficients(cloud inputCloud, int numberTries, double minimumDistance);
+	std::unordered_set<int> RANSAC::returnInliers(cloud inputCloud, int numberTries, double minimumDistance);
+	/*std::pair <double, double> getLinearCoefficientsMethod0(cloud inputCloud, int numberTries, double minimumDistance);
+	std::pair <double, double> getLinearCoefficientsMethod1(cloud inputCloud, int numberTries, double minimumDistance, int subsetSize);*/
 private:
 	
 };

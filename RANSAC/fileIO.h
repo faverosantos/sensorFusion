@@ -1,7 +1,5 @@
 #pragma once
-#include <string>
-#include <utility>
-#include <vector>
+#include "myDefines.h"
 
 class fileIO
 {
@@ -9,6 +7,6 @@ public:
 	fileIO();	
 	~fileIO();
 
-	bool save2file(std::vector<std::pair<double, double>> inputData, std::string fileName);
+	bool save2file(cloud inputData, std::string fileName);
 };
 

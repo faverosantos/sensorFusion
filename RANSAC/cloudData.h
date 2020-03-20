@@ -10,8 +10,8 @@ public:
 
 	cloud dataPoints;
 	
-	void generateRandomCloud(int cloudSize, int boxSize);
-	void generateFuzzyLinearCurve(double angularCoefficient, double linearCoefficient, int boxSize, int fuzzyness);
+	void generateRandomCloud(int cloudSize, int boxSize, int dimension);
+	void generateFuzzyLinearCurve(float angularCoefficient, float linearCoefficient, int boxSize, int fuzzyness);
 
 };
 
